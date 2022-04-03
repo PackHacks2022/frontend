@@ -30,6 +30,7 @@ function Home() {
         // save items to local storage to know type of user, which instructor, etc.
         localStorage.setItem("instructor_id", data.instructor_id);
         localStorage.setItem("phrase", data.phrase)
+        localStorage.setItem("USER", email)
         localStorage.setItem("type", "instructor")
         setAuthenticated(true);
         console.log(localStorage)
@@ -55,13 +56,13 @@ function Home() {
 
         <div class="nes-field is-inline">
           <label for="inline_field">Email</label>
-          <input onChange={(e) => setEmail(e.target.value)} type="text" id="inline_field" class="nes-input is-success" placeholder="Enter your name..."></input>
+          <input onChange={(e) => setEmail(e.target.value)} type="text" id="inline_field" class="nes-input is-success" placeholder="Enter your email..."></input>
         </div>
 
         <br/>
         <div class="nes-field is-inline">
           <label for="inline_field">Password</label>
-          <input type="password" id="inline_field" class="nes-input is-success" placeholder="Enter your session code..."></input>
+          <input type="password" id="inline_field" class="nes-input is-success" placeholder="Enter your password..."></input>
         </div>
         <br/>
         <br/>
