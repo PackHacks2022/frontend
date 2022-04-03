@@ -4,6 +4,7 @@ import Home from './Home';
 import Login from './Login';
 import io from "socket.io-client";
 import Dashboard from "./Dashboard";
+import Session from "./Session";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/session" element={<Session />} />
       </Routes>
     </div>
   )

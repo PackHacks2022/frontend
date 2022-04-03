@@ -20,7 +20,9 @@ function Login() {
       }
     }).then(res => res.json()).then(data => {
       if (data) {
-        localStorage.setItem("instructor_id", data);
+        localStorage.setItem("instructor_id", data.instructor_id);
+        localStorage.setItem("phrase", data.phrase)
+        localStorage.setItem("type", "instructor")
         setAuthenticated(true);
         navigate("/dashboard")
       }
