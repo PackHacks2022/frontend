@@ -46,15 +46,23 @@ function Login() {
   }
 
   return (
-    <div className="Login">
+    <div className="Login" class="nes-balloon">
       <p>Log in as an instructor.</p>
-      <input onChange={(e) => setEmail(e.target.value)}></input>
-      <button onClick={() => logIn()}>Log In</button>
-      {authenticated && 
+
+      <div class="nes-field is-inline">
+        <input onChange={(e) => setEmail(e.target.value)} type="text" id="inline_field" class="nes-input is-success" placeholder="Enter your email..."></input>
+        <input type="password" id="inline_field" class="nes-input is-success" placeholder="Enter your password..."></input>
+      </div>
+      <br/>
+      <br/>
+      <div>
+        <button class="nes-btn is-primary" onClick={() => logIn()}>Log In</button>
+      </div>
+      {/* {authenticated && 
       <div>
         <button onClick={startSession}>Start Session</button>
         <p>Session code: {sessionCode}</p>
-      </div>}
+      </div>} */}
     </div>
   );
 }
