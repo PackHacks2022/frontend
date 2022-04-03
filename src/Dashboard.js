@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "nes.css/css/nes.min.css";
 
 const instructorId = localStorage.getItem("instructor_id");
 
@@ -51,4 +52,29 @@ function Dashboard() {
   )
 }
 
-export default Dashboard;
+
+function StaticPage() {
+  return (
+    <div className="nes-balloon">
+      <textarea id="textarea_field" class="nes-textarea">Enter Question Here</textarea>
+      <span class="nes-text is-primary">Fancy Text</span>
+      <p type="text" class="is-primary">Mock text</p>
+      <button type="button" class="nes-btn is-primary">Start Class</button>
+      <label>
+        <input type="radio" class="nes-radio" name="answer" />
+        <span>No</span>
+      </label>
+
+      <ul class="lists">
+      <li>Good morning.</li>
+      <li>Thou hast had a good night's sleep, I hope.</li>
+      <li>Thou hast had a good afternoon</li>
+      <li>Good night.</li>
+    </ul>
+    </div>
+  );
+}
+
+export default StaticPage;
+
+// export default Dashboard;
