@@ -7,6 +7,10 @@ const socket = io.connect("http://localhost:5000");
 
 const instructorId = localStorage.getItem("instructor_id");
 
+// Main page for an instructor
+// Shows all courses and corresponding tags
+// Instructor can start a new session for any course
+// Instructor can view historical charts about a specific course
 function Dashboard() {
   const navigate = useNavigate();
 

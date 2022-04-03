@@ -3,6 +3,9 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:5000");
 
+// Session page which shows an ongoing class
+// This component has two views: an instructor view and a student view
+// Main difference is that students can ask questions, while instructors have elevated privileges on questions
 function Session() {
 
   const userType = localStorage.getItem("type");
@@ -22,6 +25,7 @@ function Session() {
     setQuestions(data);
   });
 
+  // Instructor render
   if (userType == "instructor") {
     return (
       <div className="Session">
@@ -34,7 +38,9 @@ function Session() {
           </div>)}
       </div>
     )
-  } else {
+  }
+  // Student render
+  else {
     return (
       <div className="Session">
         <p>Render the session as a student view</p>

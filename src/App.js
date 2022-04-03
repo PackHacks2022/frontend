@@ -6,6 +6,7 @@ import io from "socket.io-client";
 import Dashboard from "./Dashboard";
 import Session from "./Session";
 
+// Primary component, in charge of defining routes to other components
 function App() {
   return (
     <div className="App">

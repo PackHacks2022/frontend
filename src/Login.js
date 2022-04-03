@@ -4,6 +4,7 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:5000");
 
+// Login page where the instructor logs in
 function Login() {
   const navigate = useNavigate();
 
@@ -11,6 +12,7 @@ function Login() {
   const [sessionCode, setSessionCode] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
 
+  // Called when "Log In" is pressed
   const logIn = () => {
     fetch(`http://localhost:5000/login?email=${email}`, {
       method: 'GET',
@@ -20,11 +22,12 @@ function Login() {
       }
     }).then(res => res.json()).then(data => {
       if (data) {
+        // save items to local storage to know type of user, which instructor, etc.
         localStorage.setItem("instructor_id", data.instructor_id);
         localStorage.setItem("phrase", data.phrase)
         localStorage.setItem("type", "instructor")
         setAuthenticated(true);
-        navigate("/dashboard")
+        navigate("/dashboard") // redirect to the dashboard after log in
       }
     })
   }

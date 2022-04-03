@@ -4,6 +4,8 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:5000");
 
+// Home page, where instructors can log in
+// or students can join classes with their name and session code
 function Home() {
   const navigate = useNavigate();
 
@@ -11,10 +13,11 @@ function Home() {
   const [sessionCode, setSessionCode] = useState("");
 
   function joinSession() {
+    // emit a join event, to establish a connection with the server
     socket.emit("join", {name: name, room: sessionCode});
     localStorage.setItem("type", "student")
     localStorage.setItem("sessionCode", sessionCode)
-    navigate("/session");
+    navigate("/session"); // redirect to session page after joining
   }
 
   return (
