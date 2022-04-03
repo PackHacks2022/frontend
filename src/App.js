@@ -1,29 +1,51 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import io from "socket.io-client";
+
+const socket = io.connect("http://localhost:5000");
 
 function App() {
 
-  const [course, setCourse] = useState(null);
+  const [email, setEmail] = useState("");
+  const [sessionCode, setSessionCode] = useState("");
+  const [authenticated, setAuthenticated] = useState(false);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/course/1", {
+  const logIn = () => {
+    fetch(`http://localhost:5000/login?email=${email}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     }).then(res => res.json()).then(data => {
-      setCourse(data);
+      console.log(data)
+      if (data) {
+        // localStorage.setItem("PHRASE", data);
+        setAuthenticated(true);
+      }
     })
-  }, []);
+  }
+
+  const startSession = () => {
+    fetch(`http://localhost:5000/create_session?phrase=${localStorage.getItem("PHRASE")}`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json()).then(data => {
+      setSessionCode(data);
+      socket.emit("join", {name: email, room: sessionCode});
+    })
+  }
 
   return (
     <div className="App">
-      {course &&
+      <input onChange={(e) => setEmail(e.target.value)}></input>
+      <button onClick={() => logIn()}>Log In</button>
+      {authenticated && 
       <div>
-        <h1>Fetch course:</h1>
-        <p>{course.department}</p>
-        <p>{course.number}</p>
-        <p>{course.title}</p>
+        <button onClick={startSession}>Start Session</button>
+        <p>Session code: {sessionCode}</p>
       </div>}
     </div>
   );
